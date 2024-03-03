@@ -22,7 +22,7 @@ apt install apache2 mariadb-server php libapache2-mod-php php-mysql -y
 
 # Set database
 mysql -u root <<EOF
-SET PASSWORD FOR root@localhost = '${DB_ROOT_PASSWORD}';
+SET PASSWORD FOR root@localhost = PASSWORD('${DB_ROOT_PASSWORD}');
 FLUSH PRIVILEGES;
 EOF
 
