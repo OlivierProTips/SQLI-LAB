@@ -17,7 +17,7 @@ ROOT_FLAG="You rock!!!"
 
 # Update and install tools
 apt update
-apt upgrade -y
+# apt upgrade -y
 apt install apache2 mariadb-server php libapache2-mod-php php-mysql -y
 
 # Set database
