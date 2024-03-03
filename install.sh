@@ -22,7 +22,11 @@ apt install apache2 mariadb-server php libapache2-mod-php php-mysql -y
 
 # Set database
 mysql -u root <<EOF
-SET PASSWORD FOR root@localhost = PASSWORD('${DB_ROOT_PASSWORD}');
+UPDATE mysql.user SET Password=PASSWORD('${DB_ROOT_PASSWORD}') WHERE User='root';
+DELETE FROM mysql.user WHERE User='';
+DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+DROP DATABASE IF EXISTS test;
+DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';
 FLUSH PRIVILEGES;
 EOF
 
