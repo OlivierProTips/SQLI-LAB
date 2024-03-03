@@ -35,6 +35,7 @@ mysql -u root -p"${DB_ROOT_PASSWORD}" < dump.sql
 # Set website
 cp -r html /var/www/
 chown -R www-data:www-data /var/www/html
+sed -i -r 's/(DirectoryIndex.*)(index.html)(.*)(index.php)(.*)/\1\4\3\2\5/g' /etc/apache2/mods-enabled/dir.conf
 
 # Manage linux users
 useradd -m -s /bin/bash $USERNAME
